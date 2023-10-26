@@ -61,6 +61,9 @@ async def event():
 async def greet(interaction: discord.Interaction):
   await interaction.response.send_message('Hello!')
 
+@tree.command(name="test2", guild=discord.Object('1095716776987328574'))
+async def test2(interaction: discord.Interaction):
+  await interaction.response.send_message("Hello fucker!")
 
 @tree.command(name="test", guild=discord.Object('1095716776987328574'))
 async def test(interaction: discord.Interaction):
