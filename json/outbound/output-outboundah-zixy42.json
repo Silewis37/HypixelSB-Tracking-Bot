@@ -1,0 +1,92 @@
+[
+  {
+    "auctionId": "6a55a91889c64947b5d17439fb33126b",
+    "highestBid": 12500000,
+    "itemName": "[Lvl 61] Griffin",
+    "tag": "PET_GRIFFIN",
+    "end": "2023-09-15T02:23:19",
+    "startingBid": 12500000,
+    "bin": true
+  },
+  {
+    "auctionId": "20d6cafc596e49a7991f1e0471050117",
+    "highestBid": 200000,
+    "itemName": "Lotus Bracelet",
+    "tag": "LOTUS_BRACELET",
+    "end": "2023-09-14T02:08:19",
+    "startingBid": 200000,
+    "bin": true
+  },
+  {
+    "auctionId": "3e6ea00a34954475ae927605c4199f77",
+    "highestBid": 0,
+    "itemName": "[Lvl 1] Skeleton",
+    "tag": "PET_SKELETON",
+    "end": "2023-09-13T23:42:55",
+    "startingBid": 600000,
+    "bin": true
+  },
+  {
+    "auctionId": "34cf7a0a950142079384887f7ed08c6a",
+    "highestBid": 0,
+    "itemName": "[Lvl 1] Skeleton",
+    "tag": "PET_SKELETON",
+    "end": "2023-09-13T23:42:46",
+    "startingBid": 600000,
+    "bin": true
+  },
+  {
+    "auctionId": "6662effedf924a2b87e50cfd18cbb7b0",
+    "highestBid": 0,
+    "itemName": "[Lvl 1] Skeleton",
+    "tag": "PET_SKELETON",
+    "end": "2023-09-13T23:42:19",
+    "startingBid": 550000,
+    "bin": true
+  },
+  {
+    "auctionId": "79cdb02704854c199444cb3fe2dd1e53",
+    "highestBid": 0,
+    "itemName": "[Lvl 1] Skeleton",
+    "tag": "PET_SKELETON",
+    "end": "2023-09-13T23:42:13",
+    "startingBid": 550000,
+    "bin": true
+  },
+  {
+    "auctionId": "53387cf299ae4546a739a02c297a18a3",
+    "highestBid": 550000,
+    "itemName": "[Lvl 1] Skeleton",
+    "tag": "PET_SKELETON",
+    "end": "2023-09-13T21:24:55",
+    "startingBid": 550000,
+    "bin": true
+  },
+  {
+    "auctionId": "cd3a8376233a4045aefd7e4cf8df2a86",
+    "highestBid": 160000,
+    "itemName": "Snow Suit Helmet",
+    "tag": "SNOW_SUIT_HELMET",
+    "end": "2023-09-13T17:59:13",
+    "startingBid": 160000,
+    "bin": true
+  },
+  {
+    "auctionId": "9e48e2198f6e4835a4d3dcd98378a0cd",
+    "highestBid": 15000,
+    "itemName": "Grinch Minion Skin",
+    "tag": "GRINCH_PERSONALITY",
+    "end": "2023-09-13T17:46:44",
+    "startingBid": 15000,
+    "bin": true
+  },
+  {
+    "auctionId": "e0239ddfec37492caef9cc51cd7d893e",
+    "highestBid": 50000,
+    "itemName": "Snow Suit Chestplate",
+    "tag": "SNOW_SUIT_CHESTPLATE",
+    "end": "2023-09-13T17:46:18",
+    "startingBid": 50000,
+    "bin": true
+  }
+]

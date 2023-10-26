@@ -1,0 +1,102 @@
+[
+  {
+    "highestOwnBid": 15000,
+    "auctionId": "e9ed865e6014422f94cc4790b1fecec2",
+    "highestBid": 15000,
+    "itemName": "Experimentation Table",
+    "tag": "EXPERIMENTATION_TABLE",
+    "end": "2023-08-06T05:05:55",
+    "startingBid": 15000,
+    "bin": true
+  },
+  {
+    "highestOwnBid": 60000000,
+    "auctionId": "bc9849b59f314be79bbf415a663a3440",
+    "highestBid": 60000000,
+    "itemName": "\u269a Withered Shadow Fury \u272a\u272a\u272a\u272a\u272a",
+    "tag": "STARRED_SHADOW_FURY",
+    "end": "2023-07-28T14:51:06",
+    "startingBid": 60000000,
+    "bin": true
+  },
+  {
+    "highestOwnBid": 21800000,
+    "auctionId": "043df125f0a1466fa7742c63fcae6aeb",
+    "highestBid": 21800000,
+    "itemName": "Necron's Leggings",
+    "tag": "POWER_WITHER_LEGGINGS",
+    "end": "2023-07-28T14:50:47",
+    "startingBid": 21800000,
+    "bin": true
+  },
+  {
+    "highestOwnBid": 17999000,
+    "auctionId": "33d1eea46ea6422e8b6d2d42323ca322",
+    "highestBid": 17999000,
+    "itemName": "Giant Necron's Helmet",
+    "tag": "POWER_WITHER_HELMET",
+    "end": "2023-07-28T14:50:40",
+    "startingBid": 17999000,
+    "bin": true
+  },
+  {
+    "highestOwnBid": 16000000,
+    "auctionId": "963f11616049479ca2f4feb323ab8521",
+    "highestBid": 16000000,
+    "itemName": "Necron's Boots",
+    "tag": "POWER_WITHER_BOOTS",
+    "end": "2023-07-28T14:50:34",
+    "startingBid": 16000000,
+    "bin": true
+  },
+  {
+    "highestOwnBid": 27700000,
+    "auctionId": "114eb9360f884520820d7c867daca1ae",
+    "highestBid": 27700000,
+    "itemName": "Necron's Chestplate",
+    "tag": "POWER_WITHER_CHESTPLATE",
+    "end": "2023-07-28T14:50:21",
+    "startingBid": 27700000,
+    "bin": true
+  },
+  {
+    "highestOwnBid": 4708888,
+    "auctionId": "026a600c57944bdfbcfba979e1005788",
+    "highestBid": 4708888,
+    "itemName": "Griffin Upgrade Stone",
+    "tag": "GRIFFIN_UPGRADE_STONE_RARE",
+    "end": "2023-07-26T15:19:10",
+    "startingBid": 4708888,
+    "bin": true
+  },
+  {
+    "highestOwnBid": 3200000,
+    "auctionId": "58c8ded20c8047d28c032b37302ba485",
+    "highestBid": 3200000,
+    "itemName": "Griffin Upgrade Stone",
+    "tag": "GRIFFIN_UPGRADE_STONE_UNCOMMON",
+    "end": "2023-07-24T22:21:38",
+    "startingBid": 3200000,
+    "bin": true
+  },
+  {
+    "highestOwnBid": 1750000,
+    "auctionId": "d3917bf144da471fab087252d6d3f310",
+    "highestBid": 1750000,
+    "itemName": "Base Griffin Upgrade Stone",
+    "tag": "BASE_GRIFFIN_UPGRADE_STONE",
+    "end": "2023-07-24T22:15:51",
+    "startingBid": 1750000,
+    "bin": true
+  },
+  {
+    "highestOwnBid": 25000,
+    "auctionId": "dd2b2f5c71c64daba32fa0cdc0145c09",
+    "highestBid": 25000,
+    "itemName": "Jungle Axe",
+    "tag": "JUNGLE_AXE",
+    "end": "2023-07-23T03:32:47",
+    "startingBid": 25000,
+    "bin": true
+  }
+]

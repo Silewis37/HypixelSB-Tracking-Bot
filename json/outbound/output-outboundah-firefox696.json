@@ -1,0 +1,92 @@
+[
+  {
+    "auctionId": "dceb5715621d42919821ceef4549dbba",
+    "highestBid": 0,
+    "itemName": "Smart Zombie Knight Chestplate",
+    "tag": "ZOMBIE_KNIGHT_CHESTPLATE",
+    "end": "2023-10-14T04:34:59",
+    "startingBid": 270000,
+    "bin": true
+  },
+  {
+    "auctionId": "064d96a88a084f4da145a3e4b770cdb1",
+    "highestBid": 900000,
+    "itemName": "Hero Skin",
+    "tag": "BAT_PERSON_HERO",
+    "end": "2023-10-05T10:00:31",
+    "startingBid": 900000,
+    "bin": true
+  },
+  {
+    "auctionId": "604fdaba5f95420d8f685ff9576297d4",
+    "highestBid": 3000000,
+    "itemName": "Necrotic Spirit Boots \u272a\u272a\u272a",
+    "tag": "THORNS_BOOTS",
+    "end": "2023-10-05T06:32:42",
+    "startingBid": 3000000,
+    "bin": true
+  },
+  {
+    "auctionId": "4f6fca39be364154971b517553dd60c7",
+    "highestBid": 1900000,
+    "itemName": "Dynamite Endermite Skin",
+    "tag": "PET_SKIN_ENDERMITE_DYNAMITE",
+    "end": "2023-10-05T04:30:04",
+    "startingBid": 1900000,
+    "bin": true
+  },
+  {
+    "auctionId": "14bcc21a5cac44ac84a324013202327a",
+    "highestBid": 900000,
+    "itemName": "Green Jerry Talisman",
+    "tag": "JERRY_TALISMAN_GREEN",
+    "end": "2023-10-04T01:58:54",
+    "startingBid": 900000,
+    "bin": true
+  },
+  {
+    "auctionId": "eb6b881f82a0435bad62f3f6f3b97028",
+    "highestBid": 0,
+    "itemName": "Mythic Bouncy Boots",
+    "tag": "BOUNCY_BOOTS",
+    "end": "2023-10-03T05:20:22",
+    "startingBid": 1150000,
+    "bin": true
+  },
+  {
+    "auctionId": "36c9435d5561436181b0c6e01d077e85",
+    "highestBid": 3200000,
+    "itemName": "Ancient Golden Livid Head \u272a\u272a\u272a\u272a\u272a",
+    "tag": "GOLD_LIVID_HEAD",
+    "end": "2023-10-02T12:56:10",
+    "startingBid": 3200000,
+    "bin": true
+  },
+  {
+    "auctionId": "89ac867eb1054313921d660023b5d936",
+    "highestBid": 0,
+    "itemName": "Lesser Orb of Healing",
+    "tag": "LESSER_ORB_OF_HEALING",
+    "end": "2023-10-02T09:07:31",
+    "startingBid": 40000,
+    "bin": true
+  },
+  {
+    "auctionId": "d321507f800b4596b6e4db2cb10ae86f",
+    "highestBid": 50000,
+    "itemName": "Lava Talisman",
+    "tag": "LAVA_TALISMAN",
+    "end": "2023-09-27T06:09:53",
+    "startingBid": 50000,
+    "bin": true
+  },
+  {
+    "auctionId": "9372d925a3694ca199a46dd04244b74d",
+    "highestBid": 280000,
+    "itemName": "Aspect of the End",
+    "tag": "ASPECT_OF_THE_END",
+    "end": "2023-09-26T02:18:42",
+    "startingBid": 280000,
+    "bin": true
+  }
+]

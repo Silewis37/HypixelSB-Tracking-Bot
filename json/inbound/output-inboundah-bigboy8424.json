@@ -1,0 +1,102 @@
+[
+  {
+    "highestOwnBid": 17400000,
+    "auctionId": "25a7d7f6f1d347b6ae8bd354cee6e38a",
+    "highestBid": 17400000,
+    "itemName": "\u269a Fierce Shadow Assassin Chestplate \u272a\u272a",
+    "tag": "STARRED_SHADOW_ASSASSIN_CHESTPLATE",
+    "end": "2023-08-09T23:58:38",
+    "startingBid": 17400000,
+    "bin": true
+  },
+  {
+    "highestOwnBid": 24950000,
+    "auctionId": "44d4f3cea1f1415f9a629359c405c328",
+    "highestBid": 24950000,
+    "itemName": "Necron's Leggings",
+    "tag": "POWER_WITHER_LEGGINGS",
+    "end": "2023-08-09T23:57:51",
+    "startingBid": 24950000,
+    "bin": true
+  },
+  {
+    "highestOwnBid": 30000000,
+    "auctionId": "82ac7ae12fcc42a292847dd86206deb5",
+    "highestBid": 30000000,
+    "itemName": "Necron's Chestplate",
+    "tag": "POWER_WITHER_CHESTPLATE",
+    "end": "2023-08-09T23:57:36",
+    "startingBid": 30000000,
+    "bin": true
+  },
+  {
+    "highestOwnBid": 950000,
+    "auctionId": "11b929f71ca44b76bb42f9d53c7ba037",
+    "highestBid": 950000,
+    "itemName": "Aspect of the Dragons",
+    "tag": "ASPECT_OF_THE_DRAGON",
+    "end": "2023-08-09T23:35:21",
+    "startingBid": 950000,
+    "bin": true
+  },
+  {
+    "highestOwnBid": 3299999,
+    "auctionId": "a46cc6e17aca4ba2909da2d3dab3aa6d",
+    "highestBid": 3299999,
+    "itemName": "Moody Grappleshot",
+    "tag": "MOODY_GRAPPLESHOT",
+    "end": "2023-08-09T21:54:41",
+    "startingBid": 3299999,
+    "bin": true
+  },
+  {
+    "highestOwnBid": 70000,
+    "auctionId": "493636d1e77b4643bf1c061cd8b4c7c6",
+    "highestBid": 70000,
+    "itemName": "Radiant Power Orb",
+    "tag": "RADIANT_POWER_ORB",
+    "end": "2023-08-09T08:09:20",
+    "startingBid": 70000,
+    "bin": true
+  },
+  {
+    "highestOwnBid": 3500000,
+    "auctionId": "ac898a6b629f4e1baff097636d1ac8f9",
+    "highestBid": 3500000,
+    "itemName": "[Lvl 53] Skeleton",
+    "tag": "PET_SKELETON",
+    "end": "2023-08-05T18:00:14",
+    "startingBid": 3500000,
+    "bin": true
+  },
+  {
+    "highestOwnBid": 1580000,
+    "auctionId": "a9545cde46a045ba89792d5622f2e773",
+    "highestBid": 1580000,
+    "itemName": "God Potion",
+    "tag": "GOD_POTION_2",
+    "end": "2023-07-30T14:23:13",
+    "startingBid": 1580000,
+    "bin": true
+  },
+  {
+    "highestOwnBid": 1780000,
+    "auctionId": "881cec2779b2481a940840f3b3b4f411",
+    "highestBid": 1780000,
+    "itemName": "Wise Dragon Leggings",
+    "tag": "WISE_DRAGON_LEGGINGS",
+    "end": "2023-07-29T09:03:33",
+    "startingBid": 1780000,
+    "bin": true
+  },
+  {
+    "highestOwnBid": 830000,
+    "auctionId": "5196c59bd759437da29b7df9831b7cd0",
+    "highestBid": 830000,
+    "itemName": "Wise Dragon Helmet",
+    "tag": "WISE_DRAGON_HELMET",
+    "end": "2023-07-29T09:03:08",
+    "startingBid": 830000,
+    "bin": true
+  }
+]

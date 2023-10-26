@@ -1,0 +1,161 @@
+Foraging -> 'LOG'{OAK LOG}, 'LOG:2'{BIRCH LOG}, 'LOG:1'{SPRUCE LOG}, 'LOG:3'{JUNGLE LOG}, 'LOG_2'{ACACIA LOG}, 'LOG_2:1'{DARK OAK LOG}
+
+Mining -> 'COBBLESTONE', 'COAL', 'GOLD_INGOT', 'REDSTONE', 'EMERALD', 'DIAMOND', 'IRON_INGOT', 'SULPHUR_ORE', 'OBSIDIAN', 'NETHERRACK', 'GLOWSTONE_DUST', 'QUARTZ', 'ENDER_STONE'{END STONE}, 'GRAVEL', 'ICE', 'SAND', 'HARD_STONE', 'SAND:1'{RED SAND}, 'MITHRIL_ORE', 'MYCEL'{MYCELIUM}, 'GEMSTONE_COLLECTION', 'INK_SACK:4'{LAPIS_LAZULI}
+
+Combat -> 'BONE', 'ROTTEN_FLESH', 'STRING', 'SPIDER_EYE', 'SLIME_BALL', 'SULPHUR'{GUNPOWDER}, 'ENDER_PEARL', 'MAGMA_CREAM', 'BLAZE_ROD', 'GHAST_TEAR', 'CHILI_PEPPER'
+
+Farming -> 'PORK', 'LEATHER', 'FEATHER', 'RAW_CHICKEN', 'MUTTON', 'RABBIT', 'SEEDS', 'WHEAT', 'POTATO_ITEM'{POTATOS}, 'CARROT_ITEM'{CARROTS}, 'NETHER_STALK'{NETHERWART}, 'INK_SACK:3'{COCOA BEANS}, 'MUSHROOM_COLLECTION'{MUSHROOMS}, 'MELON', 'SUGAR_CANE', 'CACTUS', 'PUMPKIN'
+
+Fishing -> 'RAW_FISH'{RAW FISH}, 'RAW_FISH:1'{RAW SALMON}, 'RAW_FISH:2'{CLOWNFISH}, 'RAW_FISH:3'{PUFFERFISH}, 'CLAY_BALL', 'SPONGE', 'PRISMARINE_CRYSTALS', 'PRISMARINE_SHARD', 'WATER_LILY', 'INK_SACK', 'MAGMA_FISH'
+
+
+
+ForagingItems = Enum(value='ForagingItems', names=['Oak Log', 'Birch Log', 'Spruce Log', 'Jungle Log', 'Acacia Log', 'Dark Oak Log'])
+MiningItems = Enum(value='MiningItems', names=['Cobblestone', 'Coal', 'Iron Ingot', 'Gold Ingot', 'Lapis Lazuli', 'Redstone', 'Emerald', 'Diamond', 'Mithril', 'Hard Stone', 'Gemstones', 'Gravel', 'Sand', 'Red Sand', 'Ice', 'Obsidian', 'Netherrack', 'Glowstone Dust', 'Quartz', 'Sulphur', 'Mycelium', 'End Stone'])
+CombatItems = Enum(value='CombatItems', names=['Rotten Flesh', 'Bones', 'Spider Eyes', 'String', 'Slime', 'Gunpowder', 'Blaze Rods', 'Magma Cream', 'Ghast Tears', 'Chili Peppers', 'Ender Pearls'])
+FarmingItems = Enum(value='FarmingItems', names=['Wheat', 'Seeds', 'Potatos', 'Carrots', 'Melon', 'Pumpkin', 'Netherwart', 'Cocoa Beans', 'Mushrooms', 'Sugar Cane', 'Cactus', 'Leather', 'Pork', 'Feather', 'Raw Chicken', 'Mutton', 'Rabbit'])
+FishingItems = Enum(value='FishingItems', names=['Raw Fish', 'Raw Salmon', 'ClownFish', 'PufferFish', 'Clay', 'Sponge', 'Prismarine Crystals', 'Prismarine Shards', 'Lily Pads', 'Ink Sacks', 'Magma Fish'])
+
+
+if noc.name == "Oak Log":
+  nameofcollection = "LOG"
+elif noc.name == "Brich Log":
+  nameofcollection = "LOG:2"
+elif noc.name == "Spruce Log":
+  nameofcollection = "LOG:1"
+elif noc.name == "Jungle Log":
+  nameofcollection = "LOG:3"
+elif noc.name == "Acacia Log":
+  nameofcollection = "LOG_2"
+elif noc.name == "Dark Oak Log":
+  nameofcollection = "LOG_2:1"
+
+  if noc.name == "Cobblestone":
+    nameofcollection = "COBBLESTONE"
+  elif noc.name == "Coal":
+    nameofcollection = "COAL"
+  elif noc.name == "Iron Ingot":
+    nameofcollection = "IRON_INGOT"
+  elif noc.name == "Gold Ingot":
+    nameofcollection = "GOLD_INGOT"
+  elif noc.name == "Lapis Lazuli":
+    nameofcollection = "INK_SACK:4"
+  elif noc.name == "Redstone":
+    nameofcollection = "REDSTONE"
+  elif noc.name == "Emerald":
+    nameofcollection = "EMERALD"
+  elif noc.name == "Diamond":
+    nameofcollection = "DIAMOND"
+  elif noc.name == "Mithril":
+    nameofcollection = "MITHRIL_ORE"
+  elif noc.name == "Hard Stone":
+    nameofcollection = "HARD_STONE"
+  elif noc.name == "Gemstones":
+    nameofcollection = "GEMSTONE_COLLECTION"
+  elif noc.name == "Gravel":
+    nameofcollection = "GRAVEL"
+  elif noc.name == "Sand":
+    nameofcollection = "SAND"
+  elif noc.name == "Red Sand":
+    nameofcollection = "SAND:1"
+  elif noc.name == "Ice":
+    nameofcollection = "ICE"
+  elif noc.name == "Obsidian":
+    nameofcollection = "OBSIDIAN"
+  elif noc.name == "Netherrack":
+    nameofcollection = "NETHERRACK"
+  elif noc.name == "Glowstone Dust":
+    nameofcollection = "GLOWSTONE_DUST"
+  elif noc.name == "Quartz":
+    nameofcollection = "QUARTZ"
+  elif noc.name == "Sulphur":
+    nameofcollection = "SULPHUR_ORE"
+  elif noc.name == "Mycelium":
+    nameofcollection = "MYCEL"
+  elif noc.name == "End Stone":
+    nameofcollection = "ENDER_STONE"
+
+if noc.name == "Rotten Flesh":
+  nameofcollection = "ROTTEN_FLESH"
+elif noc.name == "Bones":
+  nameofcollection = "BONE"
+elif noc.name == "Spider Eyes":
+  nameofcollection = "SPIDER_EYE"
+elif noc.name == "String":
+  nameofcollection = "STRING"
+elif noc.name == "Slime":
+  nameofcollection = "SLIME_BALL"
+elif noc.name == "Gunpowder":
+  nameofcollection = "SULPHUR"
+elif noc.name == "Blaze Rods":
+  nameofcollection = "BLAZE_ROD"
+elif noc.name == "Magma Cream":
+  nameofcollection = "MAGMA_CREAM"
+elif noc.name == "Ghast Tears":
+  nameofcollection = "GHAST_TEAR"
+elif noc.name == "Chili Peppers":
+  nameofcollection = "CHILI_PEPPER"
+elif noc.name == "Ender Pearls":
+  nameofcollection = "ENDER_PEARL"
+
+if noc.name == "Wheat":
+  nameofcollection = "WHEAT"
+elif noc.name == "Seeds":
+  nameofcollection = "SEEDS"
+elif noc.name == "Potatos":
+  nameofcollection = "POTATO_ITEM"
+elif noc.name == "Carrots":
+  nameofcollection = "CARROT_ITEM"
+elif noc.name == "Melon":
+  nameofcollection = "MELON"
+elif noc.name == "Pumpkin":
+  nameofcollection = "PUMPKIN"
+elif noc.name == "Netherwart":
+  nameofcollection = "NETHER_STALK"
+elif noc.name == "Cocoa Beans":
+  nameofcollection = "INK_SACK:3"
+elif noc.name == "Mushrooms":
+  nameofcollection = "MUSHROOM_COLLECTION"
+elif noc.name == "Sugar Cane":
+  nameofcollection = "SUGAR_CANE"
+elif noc.name == "Cactus":
+  nameofcollection = "CACTUS"
+elif noc.name == "Leather":
+  nameofcollection = "LEATHER"
+elif noc.name == "Pork":
+  nameofcollection = "PORK"
+elif noc.name == "Feather":
+  nameofcollection = "FEATHER"
+elif noc.name == "Raw Chicken":
+  nameofcollection = "RAW_CHICKEN"
+elif noc.name == "Mutton":
+  nameofcollection = "MUTTON"
+elif noc.name == "Rabbit":
+  nameofcollection = "RABBIT"
+
+if noc.name == "Raw Fish":
+  nameofcollection = "RAW_FISH"
+elif noc.name == "Raw Salmon":
+  nameofcollection = "RAW_FISH:1"
+elif noc.name == "ClownFish":
+  nameofcollection = "RAW_FISH:2"
+elif noc.name == "PufferFish":
+  nameofcollection = "RAW_FISH:3"
+elif noc.name == "Clay":
+  nameofcollection = "CLAY_BALL"
+elif noc.name == "Sponge":
+  nameofcollection = "SPONGE"
+elif noc.name == "Prismarine Crystals":
+  nameofcollection = "PRISMARINE_CRYSTALS"
+elif noc.name == "Prismarine Shards":
+  nameofcollection = "PRISMARINE_SHARD"
+elif noc.name == "Lily Pads":
+  nameofcollection = "WATER_LILY"
+elif noc.name == "Ink Sacks":
+  nameofcollection = "INK_SACK"
+elif noc.name == "Magma Fish":
+  nameofcollection = "MAGMA_FISH"
+
+
+
+  

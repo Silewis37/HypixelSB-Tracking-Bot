@@ -1,0 +1,102 @@
+[
+  {
+    "highestOwnBid": 2600000,
+    "auctionId": "2048415dd93d4411a2f3526b85147f77",
+    "highestBid": 2600000,
+    "itemName": "Molten Necklace",
+    "tag": "MOLTEN_NECKLACE",
+    "end": "2023-09-15T02:18:56",
+    "startingBid": 2600000,
+    "bin": true
+  },
+  {
+    "highestOwnBid": 11000000,
+    "auctionId": "6c78cc0e2c93466583f919311cd0ddba",
+    "highestBid": 11000000,
+    "itemName": "Gauntlet of Contagion",
+    "tag": "GAUNTLET_OF_CONTAGION",
+    "end": "2023-09-15T02:01:15",
+    "startingBid": 11000000,
+    "bin": true
+  },
+  {
+    "highestOwnBid": 5000,
+    "auctionId": "749bb661432a4ddda6f7403d2eb7bd58",
+    "highestBid": 5000,
+    "itemName": "Neat Machine Gun Shortbow",
+    "tag": "MACHINE_GUN_BOW",
+    "end": "2023-09-15T01:27:30",
+    "startingBid": 5000,
+    "bin": true
+  },
+  {
+    "highestOwnBid": 1650000,
+    "auctionId": "f1181a5e0c5c497084cc2464b62dbda7",
+    "highestBid": 1650000,
+    "itemName": "Ancient Turtle Skin",
+    "tag": "PET_SKIN_TURTLE_ANCIENT",
+    "end": "2023-09-15T00:54:38",
+    "startingBid": 1650000,
+    "bin": true
+  },
+  {
+    "highestOwnBid": 1650000,
+    "auctionId": "7950413dab8147a796406ab628e93cbf",
+    "highestBid": 1650000,
+    "itemName": "Ancient Turtle Skin",
+    "tag": "PET_SKIN_TURTLE_ANCIENT",
+    "end": "2023-09-15T00:54:31",
+    "startingBid": 1650000,
+    "bin": true
+  },
+  {
+    "highestOwnBid": 3000000,
+    "auctionId": "bed30adbc5414b259088c072fce7fb17",
+    "highestBid": 3000000,
+    "itemName": "Wand of Restoration",
+    "tag": "WAND_OF_RESTORATION",
+    "end": "2023-09-14T21:02:58",
+    "startingBid": 3000000,
+    "bin": true
+  },
+  {
+    "highestOwnBid": 12000000,
+    "auctionId": "2b64beede4514481a4e2d6ccc58c1fe8",
+    "highestBid": 12000000,
+    "itemName": "Gauntlet of Contagion",
+    "tag": "GAUNTLET_OF_CONTAGION",
+    "end": "2023-09-14T20:52:19",
+    "startingBid": 12000000,
+    "bin": true
+  },
+  {
+    "highestOwnBid": 1300000,
+    "auctionId": "c59d7297dc854c678095df57e1997650",
+    "highestBid": 1300000,
+    "itemName": "Glistening Molten Belt",
+    "tag": "MOLTEN_BELT",
+    "end": "2023-09-14T20:49:53",
+    "startingBid": 1300000,
+    "bin": true
+  },
+  {
+    "highestOwnBid": 2000000,
+    "auctionId": "16845fca5aa049c38c656856b054dd2b",
+    "highestBid": 2000000,
+    "itemName": "Molten Cloak",
+    "tag": "MOLTEN_CLOAK",
+    "end": "2023-09-14T20:45:02",
+    "startingBid": 2000000,
+    "bin": true
+  },
+  {
+    "highestOwnBid": 1500000,
+    "auctionId": "248c5601a70f4693a4e69e63239a33e7",
+    "highestBid": 1500000,
+    "itemName": "Yellow Bandana",
+    "tag": "YELLOW_BANDANA",
+    "end": "2023-09-14T16:50:50",
+    "startingBid": 1500000,
+    "bin": true
+  }
+]
