@@ -1,0 +1,102 @@
+[
+  {
+    "highestOwnBid": 200000,
+    "auctionId": "b7eee154985e4f588f2e21f26ef4a2ef",
+    "highestBid": 200000,
+    "itemName": "Pickonimbus 2000",
+    "tag": "PICKONIMBUS",
+    "end": "2023-10-31T20:53:01",
+    "startingBid": 200000,
+    "bin": true
+  },
+  {
+    "highestOwnBid": 11900000,
+    "auctionId": "517e0806bf9c42f38621d2734dd4bdcc",
+    "highestBid": 11900000,
+    "itemName": "Sorrow Chestplate",
+    "tag": "SORROW_CHESTPLATE",
+    "end": "2023-10-31T20:51:59",
+    "startingBid": 11900000,
+    "bin": true
+  },
+  {
+    "highestOwnBid": 10300000,
+    "auctionId": "292a36c8f10b4fc9ade7a7894e5a4ed9",
+    "highestBid": 10300000,
+    "itemName": "Sorrow Leggings",
+    "tag": "SORROW_LEGGINGS",
+    "end": "2023-10-31T20:51:48",
+    "startingBid": 10300000,
+    "bin": true
+  },
+  {
+    "highestOwnBid": 8000000,
+    "auctionId": "bc0368e6ed0e48f8ad0b53e8e501746d",
+    "highestBid": 8000000,
+    "itemName": "Wise Sorrow Helmet",
+    "tag": "SORROW_HELMET",
+    "end": "2023-10-31T20:51:22",
+    "startingBid": 8000000,
+    "bin": true
+  },
+  {
+    "highestOwnBid": 6000000,
+    "auctionId": "fa2361417ec8464898730c181e995f03",
+    "highestBid": 6000000,
+    "itemName": "Sorrow Boots",
+    "tag": "SORROW_BOOTS",
+    "end": "2023-10-31T20:50:57",
+    "startingBid": 6000000,
+    "bin": true
+  },
+  {
+    "highestOwnBid": 59000,
+    "auctionId": "0b510fe913c848c790852a3cc010643d",
+    "highestBid": 59000,
+    "itemName": "Snow Suit Helmet",
+    "tag": "SNOW_SUIT_HELMET",
+    "end": "2023-10-31T05:38:39",
+    "startingBid": 59000,
+    "bin": true
+  },
+  {
+    "highestOwnBid": 50000,
+    "auctionId": "eb1c0e1cf22048869b365f9773c48084",
+    "highestBid": 50000,
+    "itemName": "Snow Suit Leggings",
+    "tag": "SNOW_SUIT_LEGGINGS",
+    "end": "2023-10-31T05:38:35",
+    "startingBid": 50000,
+    "bin": true
+  },
+  {
+    "highestOwnBid": 40000,
+    "auctionId": "6ce26f6e4b284c2984190dba0b4e7e07",
+    "highestBid": 40000,
+    "itemName": "Snow Suit Boots",
+    "tag": "SNOW_SUIT_BOOTS",
+    "end": "2023-10-31T05:38:29",
+    "startingBid": 40000,
+    "bin": true
+  },
+  {
+    "highestOwnBid": 40000,
+    "auctionId": "570a818ce0aa47369ee8f3f3297d3ee1",
+    "highestBid": 40000,
+    "itemName": "Snow Suit Chestplate",
+    "tag": "SNOW_SUIT_CHESTPLATE",
+    "end": "2023-10-31T05:38:17",
+    "startingBid": 40000,
+    "bin": true
+  },
+  {
+    "highestOwnBid": 5500000,
+    "auctionId": "ff0b516a5f05455cbcae6a9d2bc357ef",
+    "highestBid": 5500000,
+    "itemName": "Blessed Turing Sugar Cane Hoe",
+    "tag": "THEORETICAL_HOE_CANE_2",
+    "end": "2023-10-31T02:36:07",
+    "startingBid": 5500000,
+    "bin": true
+  }
+]

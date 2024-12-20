@@ -1,3 +1,4 @@
+from typing import Optional
 import discord
 from discord.ext import commands
 from discord import app_commands
@@ -11,10 +12,14 @@ from tabulate import tabulate
 from keep_alive import keep_alive
 import asyncio
 from enum import Enum
+import feedparser
 
 Bigboy8424 = os.getenv("BIGBOY_UUID")
 Firefox696 = os.getenv("FIREFOX_UUID")
 Zixy42 = os.getenv("ZIXY_UUID")
+VXITI = os.getenv("VXITI_UUID")
+client_id = os.getenv("DC_BOT_CLIENT_ID")
+TOKEN = os.getenv("DC_BOT_TOKEN")
 
 intents = discord.Intents.default()
 intents.members = True
@@ -22,13 +27,13 @@ intents.message_content = True
 intents.dm_messages = True
 intents.dm_typing = True
 intents.dm_reactions = True
-client_id = os.getenv("DC_BOT_CLIENT_ID")
-TOKEN = os.getenv("DC_BOT_TOKEN")
-bot = interactions.Client(token=TOKEN)
+#bot = interactions.Client(token=TOKEN)
 discord_client = discord.Client(intents=intents)
-discord_bot = commands.Bot(command_prefix='/', intents=intents)
+discord_bot = commands.Bot(command_prefix='$', intents=intents)
 API = os.getenv("HYPIXLE_API_KEY")
 urlh = f'https://api.hypixel.net/skyblock/profile?key={API}&profile=b44178d3-75ec-4f4e-8134-12ac93989fed'
+rss_feed = 'https://hypixel.net/forums/skyblock-patch-notes.158/index.rss'
+feed = feedparser.parse(rss_feed)
 
 
 class aclient(discord.Client):
@@ -42,6 +47,7 @@ class aclient(discord.Client):
     await self.wait_until_ready()
     if not self.synced:  #check if slash commands have been synced
       await tree.sync(guild=discord.Object('1095716776987328574'))
+      await tree.sync(guild=discord.Object('1120460891012481138'))
       self.synced = True
     if not self.added:
       self.added = True
@@ -51,78 +57,95 @@ class aclient(discord.Client):
 client = aclient()
 tree = app_commands.CommandTree(client)
 
-@client.event
-async def event():
-  game = discord.Game("with the API")
-  await client.change_presence(status=discord.Status.idle, activity=game)
 
-@tree.command(description='Respond hello to you.',
-              guild=discord.Object('1095716776987328574'))
+@client.event
+async def on_ready():
+  print("READY!")
+  print("RUNNIGN TEST!")
+  async for guild in client.fetch_guilds(limit=10000000):
+    guildid = str(guild.id)
+    print(guildid)
+    await tree.sync(guild=discord.Object(guildid))
+    print(f"Synced to {guild.name}")
+  print("SYNCED!")
+
+
+@tree.command(description='Respond hello to you.')
 async def greet(interaction: discord.Interaction):
-  await interaction.response.send_message('Hello!')
+  await interaction.response.send_message('Hello fucker!')
+
 
 print("WHY GOD")
 
-@tree.command(name="test", guild=discord.Object('1095716776987328574'))
+
+@tree.command(description='test')
 async def test(interaction: discord.Interaction):
   user = interaction.user.id
-  await interaction.response.send_message(f'updater worked <@{user}>!')
+  await interaction.response.send_message(
+      f'updater worked lmfao, sup fucker<@{user}>!')
 
 
 PurgeAmount = Enum(value='PurgeAmount', names=['10', '100', '1000', '10000'])
-CoopMembers = Enum(value='CoopMembers',
-                   names=['Bigboy8424', 'Zixy42', 'Firefox696'])
+CoopMembers = Enum(value='CoopMembers', names=['Bigboy8424', 'Firefox696'])
 ForagingItems = Enum(value='ForagingItems',
                      names=[
-                       'Oak Log', 'Birch Log', 'Spruce Log', 'Jungle Log',
-                       'Acacia Log', 'Dark Oak Log'
+                         'Oak Log', 'Birch Log', 'Spruce Log', 'Jungle Log',
+                         'Acacia Log', 'Dark Oak Log'
                      ])
 MiningItems = Enum(value='MiningItems',
                    names=[
-                     'Cobblestone', 'Coal', 'Iron Ingot', 'Gold Ingot',
-                     'Lapis Lazuli', 'Redstone', 'Emerald', 'Diamond',
-                     'Mithril', 'Hard Stone', 'Gemstones', 'Gravel', 'Sand',
-                     'Red Sand', 'Ice', 'Obsidian', 'Netherrack',
-                     'Glowstone Dust', 'Quartz', 'Sulphur', 'Mycelium',
-                     'End Stone'
+                       'Cobblestone', 'Coal', 'Iron Ingot', 'Gold Ingot',
+                       'Lapis Lazuli', 'Redstone', 'Emerald', 'Diamond',
+                       'Mithril', 'Hard Stone', 'Gemstones', 'Gravel', 'Sand',
+                       'Red Sand', 'Ice', 'Obsidian', 'Netherrack',
+                       'Glowstone Dust', 'Quartz', 'Sulphur', 'Mycelium',
+                       'End Stone'
                    ])
 CombatItems = Enum(value='CombatItems',
                    names=[
-                     'Rotten Flesh', 'Bones', 'Spider Eyes', 'String', 'Slime',
-                     'Gunpowder', 'Blaze Rods', 'Magma Cream', 'Ghast Tears',
-                     'Chili Peppers', 'Ender Pearls'
+                       'Rotten Flesh', 'Bones', 'Spider Eyes', 'String',
+                       'Slime', 'Gunpowder', 'Blaze Rods', 'Magma Cream',
+                       'Ghast Tears', 'Chili Peppers', 'Ender Pearls'
                    ])
 FarmingItems = Enum(value='FarmingItems',
                     names=[
-                      'Wheat', 'Seeds', 'Potatos', 'Carrots', 'Melon',
-                      'Pumpkin', 'Netherwart', 'Cocoa Beans', 'Mushrooms',
-                      'Sugar Cane', 'Cactus', 'Leather', 'Pork', 'Feather',
-                      'Raw Chicken', 'Mutton', 'Rabbit'
+                        'Wheat', 'Seeds', 'Potatos', 'Carrots', 'Melon',
+                        'Pumpkin', 'Netherwart', 'Cocoa Beans', 'Mushrooms',
+                        'Sugar Cane', 'Cactus', 'Leather', 'Pork', 'Feather',
+                        'Raw Chicken', 'Mutton', 'Rabbit'
                     ])
 FishingItems = Enum(value='FishingItems',
                     names=[
-                      'Raw Fish', 'Raw Salmon', 'ClownFish', 'PufferFish',
-                      'Clay', 'Sponge', 'Prismarine Crystals',
-                      'Prismarine Shards', 'Lily Pads', 'Ink Sacks',
-                      'Magma Fish'
+                        'Raw Fish', 'Raw Salmon', 'ClownFish', 'PufferFish',
+                        'Clay', 'Sponge', 'Prismarine Crystals',
+                        'Prismarine Shards', 'Lily Pads', 'Ink Sacks',
+                        'Magma Fish'
                     ])
+
+
+# TESTING SHIT #
+@tree.command(description="test for raw item cost")
+async def costtest(interaction: discord.Interaction, wood: ForagingItems,
+                   farming: FarmingItems, mining: MiningItems,
+                   combat: CombatItems, fishing: FishingItems):
+  await interaction.response.send_message(
+      f"wood: {wood.name}, farming: {farming.name}, mining: {mining.name}, combat: {combat.name}, fishing: {fishing.name}"
+  )
 
 
 # AUCTION HOUSE TRACKING #
 # Auction House Tracking Outbound / Selling #
 @tree.command(
-  name='aho',
-  guild=discord.Object('1095716776987328574'),
-  description=
-  "Allows you too see the last 10 OUTBOUND Auctions from one of the Co-Op Members Selected."
+    name='aho',
+    description=
+    "Allows you too see the last 10 OUTBOUND Auctions from one of the Co-Op Members Selected."
 )
 async def aho(interaction: discord.Interaction, member: CoopMembers):
+  await interaction.response.defer()
   if member.name == "Bigboy8424":
     member2 = "Bigboy8424"
-  if member.name == "Firefox696":
+  elif member.name == "Firefox696":
     member2 = "Firefox696"
-  if member.name == "Zixy42":
-    member2 = "Zixy42"
   if member2 == "Bigboy8424":
     url = 'https://sky.coflnet.com/api/player/' + Bigboy8424 + '/auctions?page=0'
     response = requests.get(url)
@@ -144,7 +167,7 @@ async def aho(interaction: discord.Interaction, member: CoopMembers):
     wanted_info = dd[['itemName', 'bin', 'startingBid', 'highestBid']]
     wantinf = tabulate(wanted_info,
                        headers=['\tItem Name Bin Starting Bid Highest Bid'])
-    await interaction.response.send_message(wantinf)
+    await interaction.followup.send(wantinf)
   elif member2 == "Firefox696":
     url = 'https://sky.coflnet.com/api/player/' + Firefox696 + '/auctions?page=0'
     response = requests.get(url)
@@ -166,48 +189,24 @@ async def aho(interaction: discord.Interaction, member: CoopMembers):
     wanted_info = dd[['itemName', 'bin', 'startingBid', 'highestBid']]
     wantinf = tabulate(wanted_info,
                        headers=['\tItem Name Bin Starting Bid Highest Bid'])
-    await interaction.response.send_message(wantinf)
-  elif member2 == "Zixy42":
-    url = 'https://sky.coflnet.com/api/player/' + Zixy42 + '/auctions?page=0'
-    response = requests.get(url)
-    data = json.loads(response.content)
-    pretty_data = json.dumps(data, indent=2)
-    f = open("./json/outbound/output-outboundah-zixy42.json", "+w")
-    f.write(pretty_data)
-    f.close()
-    time.sleep(2.5)
-    # Load the JSON data from a file
-    with open('./json/outbound/output-outboundah-zixy42.json', 'r') as file:
-      data = json.load(file)
-    # Convert the JSON data to a DataFrame
-    df = pd.json_normalize(data)
-    # Write the DataFrame to a CSV file
-    df.to_csv('./csv/outbound/output-outboundah-zixy42.csv', index=False)
-    dd = pd.read_csv('./csv/outbound/output-outboundah-zixy42.csv')
-    wanted_info = dd[['itemName', 'bin', 'startingBid', 'highestBid']]
-    wantinf = tabulate(wanted_info,
-                       headers=['\tItem Name Bin Starting Bid Highest Bid'])
-    await interaction.response.send_message(wantinf)
+    await interaction.followup.send(wantinf)
   else:
-    await interaction.response.send_message(
-      "**ERROR** That Player Does Not Exist on this Co-Op. ***Please Try Again***"
+    await interaction.followup.send(
+        "**ERROR** That Player Does Not Exist on this Co-Op. ***Please Try Again***"
     )
 
 
 # Auction House Tracking Inbound / Buying #
 @tree.command(
-  name='ahi',
-  guild=discord.Object('1095716776987328574'),
-  description=
-  "Allows you too see the last 10 INBOUND Auctions from one of the Co-Op Members Selected.",
+    name='ahi',
+    description=
+    "Allows you too see the last 10 INBOUND Auctions from one of the Co-Op Members Selected.",
 )
 async def ahi(interaction: discord.Interaction, member: CoopMembers):
   if member.name == "Bigboy8424":
     member2 = "Bigboy8424"
   if member.name == "Firefox696":
     member2 = "Firefox696"
-  if member.name == "Zixy42":
-    member2 = "Zixy42"
   if member2 == "Bigboy8424":
     url = 'https://sky.coflnet.com/api/player/' + Bigboy8424 + '/bids?page=0'
     response = requests.get(url)
@@ -250,49 +249,26 @@ async def ahi(interaction: discord.Interaction, member: CoopMembers):
     wantinf = tabulate(wanted_info,
                        headers=['\tItem Name Bin Starting Bid Highest Bid'])
     await interaction.response.send_message(wantinf)
-  elif member2 == "Zixy42":
-    url = 'https://sky.coflnet.com/api/player/' + Zixy42 + '/bids?page=0'
-    response = requests.get(url)
-    data = json.loads(response.content)
-    pretty_data = json.dumps(data, indent=2)
-    f = open("./json/inbound/output-inboundah-zixy42.json", "+w")
-    f.write(pretty_data)
-    f.close()
-    time.sleep(2.5)
-    # Load the JSON data from a file
-    with open('./json/inbound/output-inboundah-zixy42.json', 'r') as file:
-      data = json.load(file)
-    # Convert the JSON data to a DataFrame
-    df = pd.json_normalize(data)
-    # Write the DataFrame to a CSV file
-    df.to_csv('./csv/inbound/output-inboundah-zixy42.csv', index=False)
-    dd = pd.read_csv('./csv/inbound/output-inboundah-zixy42.csv')
-    wanted_info = dd[['itemName', 'bin', 'startingBid', 'highestBid']]
-    wantinf = tabulate(wanted_info,
-                       headers=['\tItem Name Bin Starting Bid Highest Bid'])
-    await interaction.response.send_message(wantinf)
   else:
     await interaction.response.send_message(
-      "**ERROR** That Player Does Not Exist on this Co-Op. ***Please Try Again***"
+        "**ERROR** That Player Does Not Exist on this Co-Op. ***Please Try Again***"
     )
 
 
 # COLLECTION TRACKING #
 # Slime only Collection Traker #
 @tree.command(
-  name='ccolslime',
-  guild=discord.Object('1095716776987328574'),
-  description=
-  'Allows you too view the current number of collection of \nSLIME for the given Member Selected.'
+    name='ccolslime',
+    description=
+    'Allows you too view the current number of collection of \nSLIME for the given Member Selected.'
 )
 async def ccolslime(interaction: discord.Interaction, member: CoopMembers):
+  await interaction.response.defer()
   if member.name == "Bigboy8424":
     member2 = "Bigboy8424"
   if member.name == "Firefox696":
     member2 = "Firefox696"
-  if member.name == "Zixy42":
-    member2 = "Zixy42"
-  if member2 == "Bigboy8424":
+  if member2 == "Bigboy8424" or member.name == "Bigboy8424":
     response = requests.get(urlh)
     data = json.loads(response.content)
     pretty_data = json.dumps(data, indent=2)
@@ -309,9 +285,13 @@ async def ccolslime(interaction: discord.Interaction, member: CoopMembers):
     df.to_csv('./csv/ccheck/output-ccheck.csv', index=False)
     dd = pd.read_csv('./csv/ccheck/output-ccheck.csv', nrows=2)
     wanted_info = dd[[
-      'profile.members.c3ca1ae1236c45d5922f2b1ec7eca271.collection.SLIME_BALL'
+        'profile.members.c3ca1ae1236c45d5922f2b1ec7eca271.collection.SLIME_BALL'
     ]]
-    await interaction.response.send_message(wanted_info)
+    wantinf = tabulate(wanted_info,
+                       headers=["Bigboy8424's Collection for Slime"],
+                       disable_numparse=True)
+    print(wantinf)
+    await interaction.followup.send(content=wantinf)
   elif member2 == "Firefox696":
     response = requests.get(urlh)
     data = json.loads(response.content)
@@ -329,46 +309,27 @@ async def ccolslime(interaction: discord.Interaction, member: CoopMembers):
     df.to_csv('./csv/ccheck/output-ccheck.csv', index=False)
     dd = pd.read_csv('./csv/ccheck/output-ccheck.csv', nrows=2)
     wanted_info_f = dd[[
-      'profile.members.6c7cd35c6fe14e82b142f1299a3bb759.collection.SLIME_BALL'
+        'profile.members.6c7cd35c6fe14e82b142f1299a3bb759.collection.SLIME_BALL'
     ]]
-    await interaction.response.send_message(wanted_info_f)
-  elif member2 == "Zixy42":
-    response = requests.get(urlh)
-    data = json.loads(response.content)
-    pretty_data = json.dumps(data, indent=2)
-    f = open("./json/ccheck/output-ccheck.json", "+w")
-    f.write(pretty_data)
-    f.close()
-    time.sleep(2.5)
-    # Load the JSON data from a file
-    with open('./json/ccheck/output-ccheck.json', 'r') as file:
-      data = json.load(file)
-    # Convert the JSON data to a DataFrame
-    df = pd.json_normalize(data)
-    # Write the DataFrame to a CSV file
-    df.to_csv('./csv/ccheck/output-ccheck.csv', index=False)
-    dd = pd.read_csv('./csv/ccheck/output-ccheck.csv', nrows=2)
-    wanted_info_z = dd[[
-      'profile.members.677b393621554f62b28cd70c0c7dfa80.collection.SLIME_BALL'
-    ]]
-    await interaction.response.send_message(wanted_info_z)
+    wantinf = tabulate(wanted_info_f,
+                       headers=["Firefox696's Collection for Slime"],
+                       disable_numparse=True)
+    await interaction.followup.send(content=wantinf)
 
 
 # All Collection Tracker #
 @tree.command(
-  name='woodcol',
-  guild=discord.Object('1095716776987328574'),
-  description=
-  'Allows you too see the current number of wood collection in Hypixel Skyblock for Selected Member'
+    name='woodcol',
+    description=
+    'Allows you too see the current number of wood collection in Hypixel Skyblock for Selected Member'
 )
 async def woodcol(interaction: discord.Interaction, member: CoopMembers,
                   noc: ForagingItems):
+  await interaction.response.defer()
   if member.name == "Bigboy8424":
     member2 = "Bigboy8424"
   elif member.name == "Firefox696":
     member2 = "Firefox696"
-  elif member.name == "Zixy42":
-    member2 = "Zixy42"
   if noc.name == "Oak Log":
     nameofcollection = "LOG"
   elif noc.name == "Brich Log":
@@ -400,7 +361,7 @@ async def woodcol(interaction: discord.Interaction, member: CoopMembers,
     col = 'profile.members.c3ca1ae1236c45d5922f2b1ec7eca271.collection.' + nameofcollection
     wanted_info = dd[[col]]
     print(wanted_info)
-    await interaction.response.send_message(content= wanted_info)
+    await interaction.followup.send(content=wanted_info)
   elif member.name == "Firefox696":
     response = requests.get(urlh)
     data = json.loads(response.content)
@@ -419,36 +380,17 @@ async def woodcol(interaction: discord.Interaction, member: CoopMembers,
     dd = pd.read_csv('./csv/ccheck/output-ccheck.csv', nrows=2)
     col_f = 'profile.members.6c7cd35c6fe14e82b142f1299a3bb759.collection.' + nameofcollection
     wanted_info_f = dd[[col_f]]
-    await interaction.response.send_message(wanted_info_f)
-  elif member.name == "Zixy42":
-    response = requests.get(urlh)
-    data = json.loads(response.content)
-    pretty_data = json.dumps(data, indent=2)
-    f = open("./json/ccheck/output-ccheck.json", "+w")
-    f.write(pretty_data)
-    f.close()
-    time.sleep(2.5)
-    # Load the JSON data from a file
-    with open('./json/ccheck/output-ccheck.json', 'r') as file:
-      data = json.load(file)
-    # Convert the JSON data to a DataFrame
-    df = pd.json_normalize(data)
-    # Write the DataFrame to a CSV file
-    df.to_csv('./csv/ccheck/output-ccheck.csv', index=False)
-    dd = pd.read_csv('./csv/ccheck/output-ccheck.csv', nrows=2)
-    col_z = 'profile.members.677b393621554f62b28cd70c0c7dfa80.collection.' + nameofcollection
-    wanted_info_z = dd[[col_z]]
-    await interaction.response.send_message(wanted_info_z)
+    await interaction.followup.send(wanted_info_f)
 
 
 @tree.command(
-  name='miningcol',
-  guild=discord.Object('1095716776987328574'),
-  description=
-  'Allows you too view the current number of collection in Hypixel Skyblock for the Selected Member'
+    name='miningcol',
+    description=
+    'Allows you too view the current number of collection in Hypixel Skyblock for the Selected Member'
 )
 async def miningcol(interaction: discord.Interaction, member: CoopMembers,
                     noc: MiningItems):
+  await interaction.response.defer()
   if noc.name == "Cobblestone":
     nameofcollection = "COBBLESTONE"
   elif noc.name == "Coal":
@@ -494,7 +436,7 @@ async def miningcol(interaction: discord.Interaction, member: CoopMembers,
   elif noc.name == "End Stone":
     nameofcollection = "ENDER_STONE"
   if member.name == "Bigboy8424":
-    
+
     response = requests.get(urlh)
     data = json.loads(response.content)
     pretty_data = json.dumps(data, indent=2)
@@ -512,9 +454,9 @@ async def miningcol(interaction: discord.Interaction, member: CoopMembers,
     dd = pd.read_csv('./csv/ccheck/output-ccheck.csv', nrows=2)
     col = 'profile.members.c3ca1ae1236c45d5922f2b1ec7eca271.collection.' + nameofcollection
     wanted_info = dd[[col]]
-    await interaction.response.send_message(wanted_info)
+    await interaction.followup.send(wanted_info)
   elif member.name == "Firefox696":
-    
+
     response = requests.get(urlh)
     data = json.loads(response.content)
     pretty_data = json.dumps(data, indent=2)
@@ -532,37 +474,21 @@ async def miningcol(interaction: discord.Interaction, member: CoopMembers,
     dd = pd.read_csv('./csv/ccheck/output-ccheck.csv', nrows=2)
     col_f = 'profile.members.6c7cd35c6fe14e82b142f1299a3bb759.collection.' + nameofcollection
     wanted_info_f = dd[[col_f]]
-    await interaction.response.send_message(wanted_info_f)
-  elif member.name == "Zixy42":
-    
-    response = requests.get(urlh)
-    data = json.loads(response.content)
-    pretty_data = json.dumps(data, indent=2)
-    f = open("./json/ccheck/output-ccheck.json", "+w")
-    f.write(pretty_data)
-    f.close()
-    time.sleep(2.5)
-    # Load the JSON data from a file
-    with open('./json/ccheck/output-ccheck.json', 'r') as file:
-      data = json.load(file)
-    # Convert the JSON data to a DataFrame
-    df = pd.json_normalize(data)
-    # Write the DataFrame to a CSV file
-    df.to_csv('./csv/ccheck/output-ccheck.csv', index=False)
-    dd = pd.read_csv('./csv/ccheck/output-ccheck.csv', nrows=2)
-    col_z = 'profile.members.677b393621554f62b28cd70c0c7dfa80.collection.' + nameofcollection
-    wanted_info_z = dd[[col_z]]
-    await interaction.response.send_message(wanted_info_z)
+    await interaction.followup.send(wanted_info_f)
 
 
 @tree.command(
-  name='combatcol',
-  guild=discord.Object('1095716776987328574'),
-  description=
-  'Allows you too view the current number of collection in Hypixel Skyblock for the Selected Member'
+    name='combatcol',
+    description=
+    'Allows you too view the current number of collection in Hypixel Skyblock for the Selected Member'
 )
 async def combatcol(interaction: discord.Interaction, member: CoopMembers,
                     noc: CombatItems):
+  await interaction.response.defer()
+  if member.name == "Bigboy8424":
+    member2 = "Bigboy8424"
+  elif member.name == "Firefox696":
+    member2 = "Firefox696"
   if noc.name == "Rotten Flesh":
     nameofcollection = "ROTTEN_FLESH"
   elif noc.name == "Bones":
@@ -585,8 +511,9 @@ async def combatcol(interaction: discord.Interaction, member: CoopMembers,
     nameofcollection = "CHILI_PEPPER"
   elif noc.name == "Ender Pearls":
     nameofcollection = "ENDER_PEARL"
-  if member.name == "Bigboy8424":
-    
+  else:
+    pass
+  if member2 == "Bigboy8424":
     response = requests.get(urlh)
     data = json.loads(response.content)
     pretty_data = json.dumps(data, indent=2)
@@ -604,9 +531,8 @@ async def combatcol(interaction: discord.Interaction, member: CoopMembers,
     dd = pd.read_csv('./csv/ccheck/output-ccheck.csv', nrows=2)
     col = 'profile.members.c3ca1ae1236c45d5922f2b1ec7eca271.collection.' + nameofcollection
     wanted_info = dd[[col]]
-    await interaction.response.send_message(wanted_info)
-  elif member.name == "Firefox696":
-    
+    await interaction.followup.send(wanted_info)
+  elif member2 == "Firefox696":
     response = requests.get(urlh)
     data = json.loads(response.content)
     pretty_data = json.dumps(data, indent=2)
@@ -624,37 +550,17 @@ async def combatcol(interaction: discord.Interaction, member: CoopMembers,
     dd = pd.read_csv('./csv/ccheck/output-ccheck.csv', nrows=2)
     col_f = 'profile.members.6c7cd35c6fe14e82b142f1299a3bb759.collection.' + nameofcollection
     wanted_info_f = dd[[col_f]]
-    await interaction.response.send_message(wanted_info_f)
-  elif member.name == "Zixy42":
-    
-    response = requests.get(urlh)
-    data = json.loads(response.content)
-    pretty_data = json.dumps(data, indent=2)
-    f = open("./json/ccheck/output-ccheck.json", "+w")
-    f.write(pretty_data)
-    f.close()
-    time.sleep(2.5)
-    # Load the JSON data from a file
-    with open('./json/ccheck/output-ccheck.json', 'r') as file:
-      data = json.load(file)
-    # Convert the JSON data to a DataFrame
-    df = pd.json_normalize(data)
-    # Write the DataFrame to a CSV file
-    df.to_csv('./csv/ccheck/output-ccheck.csv', index=False)
-    dd = pd.read_csv('./csv/ccheck/output-ccheck.csv', nrows=2)
-    col_z = 'profile.members.677b393621554f62b28cd70c0c7dfa80.collection.' + nameofcollection
-    wanted_info_z = dd[[col_z]]
-    await interaction.response.send_message(wanted_info_z)
+    await interaction.followup.send(wanted_info_f)
 
 
 @tree.command(
-  name='farmingcol',
-  guild=discord.Object('1095716776987328574'),
-  description=
-  'Allows you too view the current number of collection in Hypixel Skyblock for the Selected Member'
+    name='farmingcol',
+    description=
+    'Allows you too view the current number of collection in Hypixel Skyblock for the Selected Member'
 )
 async def farmingcol(interaction: discord.Interaction, member: CoopMembers,
                      noc: FarmingItems):
+  await interaction.response.defer()
   if noc.name == "Wheat":
     nameofcollection = "WHEAT"
   elif noc.name == "Seeds":
@@ -690,7 +596,7 @@ async def farmingcol(interaction: discord.Interaction, member: CoopMembers,
   elif noc.name == "Rabbit":
     nameofcollection = "RABBIT"
   if member.name == "Bigboy8424":
-    
+
     response = requests.get(urlh)
     data = json.loads(response.content)
     pretty_data = json.dumps(data, indent=2)
@@ -708,9 +614,9 @@ async def farmingcol(interaction: discord.Interaction, member: CoopMembers,
     dd = pd.read_csv('./csv/ccheck/output-ccheck.csv', nrows=2)
     col = 'profile.members.c3ca1ae1236c45d5922f2b1ec7eca271.collection.' + nameofcollection
     wanted_info = dd[[col]]
-    await interaction.response.send_message(wanted_info)
+    await interaction.followup.send(wanted_info)
   elif member.name == "Firefox696":
-    
+
     response = requests.get(urlh)
     data = json.loads(response.content)
     pretty_data = json.dumps(data, indent=2)
@@ -728,37 +634,17 @@ async def farmingcol(interaction: discord.Interaction, member: CoopMembers,
     dd = pd.read_csv('./csv/ccheck/output-ccheck.csv', nrows=2)
     col_f = 'profile.members.6c7cd35c6fe14e82b142f1299a3bb759.collection.' + nameofcollection
     wanted_info_f = dd[[col_f]]
-    await interaction.response.send_message(wanted_info_f)
-  elif member.name == "Zixy42":
-    
-    response = requests.get(urlh)
-    data = json.loads(response.content)
-    pretty_data = json.dumps(data, indent=2)
-    f = open("./json/ccheck/output-ccheck.json", "+w")
-    f.write(pretty_data)
-    f.close()
-    time.sleep(2.5)
-    # Load the JSON data from a file
-    with open('./json/ccheck/output-ccheck.json', 'r') as file:
-      data = json.load(file)
-    # Convert the JSON data to a DataFrame
-    df = pd.json_normalize(data)
-    # Write the DataFrame to a CSV file
-    df.to_csv('./csv/ccheck/output-ccheck.csv', index=False)
-    dd = pd.read_csv('./csv/ccheck/output-ccheck.csv', nrows=2)
-    col_z = 'profile.members.677b393621554f62b28cd70c0c7dfa80.collection.' + nameofcollection
-    wanted_info_z = dd[[col_z]]
-    await interaction.response.send_message(wanted_info_z)
+    await interaction.followup.send(wanted_info_f)
 
 
 @tree.command(
-  name='fishingcol',
-  guild=discord.Object('1095716776987328574'),
-  description=
-  'Allows you too view the current number of collection in Hypixel Skyblock for the Selected Member'
+    name='fishingcol',
+    description=
+    'Allows you too view the current number of collection in Hypixel Skyblock for the Selected Member'
 )
 async def fishingcol(interaction: discord.Interaction, member: CoopMembers,
                      noc: FishingItems):
+  await interaction.response.defer()
   if noc.name == "Raw Fish":
     nameofcollection = "RAW_FISH"
   elif noc.name == "Raw Salmon":
@@ -782,7 +668,7 @@ async def fishingcol(interaction: discord.Interaction, member: CoopMembers,
   elif noc.name == "Magma Fish":
     nameofcollection = "MAGMA_FISH"
   if member.name == "Bigboy8424":
-    
+
     response = requests.get(urlh)
     data = json.loads(response.content)
     pretty_data = json.dumps(data, indent=2)
@@ -800,9 +686,9 @@ async def fishingcol(interaction: discord.Interaction, member: CoopMembers,
     dd = pd.read_csv('./csv/ccheck/output-ccheck.csv', nrows=2)
     col = 'profile.members.c3ca1ae1236c45d5922f2b1ec7eca271.collection.' + nameofcollection
     wanted_info = dd[[col]]
-    await interaction.response.send_message(wanted_info)
+    await interaction.followup.send(wanted_info)
   elif member.name == "Firefox696":
-    
+
     response = requests.get(urlh)
     data = json.loads(response.content)
     pretty_data = json.dumps(data, indent=2)
@@ -818,37 +704,16 @@ async def fishingcol(interaction: discord.Interaction, member: CoopMembers,
     # Write the DataFrame to a CSV file
     df.to_csv('./csv/ccheck/output-ccheck.csv', index=False)
     dd = pd.read_csv('./csv/ccheck/output-ccheck.csv', nrows=2)
-    col_f = 'profile.members.6c7cd35c6fe14e82b142f1299a3bb759.collection.' + nameofcollectioon
+    col_f = 'profile.members.6c7cd35c6fe14e82b142f1299a3bb759.collection.' + nameofcollection
     wanted_info_f = dd[[col_f]]
-    await interaction.response.send_message(wanted_info_f)
-  elif member.name == "Zixy42":
-    
-    response = requests.get(urlh)
-    data = json.loads(response.content)
-    pretty_data = json.dumps(data, indent=2)
-    f = open("./json/ccheck/output-ccheck.json", "+w")
-    f.write(pretty_data)
-    f.close()
-    time.sleep(2.5)
-    # Load the JSON data from a file
-    with open('./json/ccheck/output-ccheck.json', 'r') as file:
-      data = json.load(file)
-    # Convert the JSON data to a DataFrame
-    df = pd.json_normalize(data)
-    # Write the DataFrame to a CSV file
-    df.to_csv('./csv/ccheck/output-ccheck.csv', index=False)
-    dd = pd.read_csv('./csv/ccheck/output-ccheck.csv', nrows=2)
-    col_z = 'profile.members.677b393621554f62b28cd70c0c7dfa80.collection.' + nameofcollection
-    wanted_info_z = dd[[col_z]]
-    await interaction.response.send_message(wanted_info_z)
+    await interaction.followup.send(wanted_info_f)
 
 
 @tree.command(
-  name='acolslime',
-  guild=discord.Object('1095716776987328574'),
-  description='Displays all of the Co-Op Members Slime Collections')
+    name='acolslime',
+    description='Displays all of the Co-Op Members Slime Collections')
 async def acolslime(interaction: discord.Interaction):
-  
+  await interaction.response.defer()
   response = requests.get(urlh)
   data = json.loads(response.content)
   pretty_data = json.dumps(data, indent=2)
@@ -866,27 +731,20 @@ async def acolslime(interaction: discord.Interaction):
   dd = pd.read_csv('./csv/ccheck/output-acolslime.csv', nrows=2)
   col = 'profile.members.c3ca1ae1236c45d5922f2b1ec7eca271.collection.SLIME_BALL'
   wanted_info = dd[[col]]
-  await interaction.response.send_message(
-    "Bigboy8424's Current Slime Collection >> \n")
-  await interaction.response.send_message(wanted_info)
+  wantinf = tabulate(wanted_info, headers=["Bigboy8424's Collection Slime"])
   col_f = 'profile.members.6c7cd35c6fe14e82b142f1299a3bb759.collection.SLIME_BALL'
   wanted_info_f = dd[[col_f]]
-  await interaction.response.send_message(
-    "Firefox696's Current Slime Collection >> \n")
-  await interaction.response.send_message(wanted_info_f)
-  col_z = 'profile.members.677b393621554f62b28cd70c0c7dfa80.collection.SLIME_BALL'
-  wanted_info_z = dd[[col_z]]
-  await interaction.response.send_message(
-    "Zixy42's Slime Current Collection >>\n")
-  await interaction.response.send_message(wanted_info_z)
+  wantinff = tabulate(wanted_info_f, headers=["Firefox696's Collection Slime"])
+  await interaction.followup.send(wantinf)
+  await interaction.followup.send(wantinff)
 
 
 @tree.command(
-  name='woodacol',
-  guild=discord.Object('1095716776987328574'),
-  description=
-  'Displays the total Co-Ops Colections from the Choice you Selected.')
+    name='woodacol',
+    description=
+    'Displays the total Co-Ops Colections from the Choice you Selected.')
 async def woodacol(interaction: discord.Interaction, noc: ForagingItems):
+  await interaction.response.defer()
   if noc.name == "Oak Log":
     nameofcollection = "LOG"
   elif noc.name == "Brich Log":
@@ -899,7 +757,7 @@ async def woodacol(interaction: discord.Interaction, noc: ForagingItems):
     nameofcollection = "LOG_2"
   elif noc.name == "Dark Oak Log":
     nameofcollection = "LOG_2:1"
-  
+
   response = requests.get(urlh)
   data = json.loads(response.content)
   pretty_data = json.dumps(data, indent=2)
@@ -917,27 +775,22 @@ async def woodacol(interaction: discord.Interaction, noc: ForagingItems):
   dd = pd.read_csv('./csv/ccheck/output-ccheck.csv', nrows=2)
   col = 'profile.members.c3ca1ae1236c45d5922f2b1ec7eca271.collection.' + nameofcollection
   wanted_info = dd[[col]]
-  await interaction.response.send_message("Bigboy8424's Collection of " +
-                                          nameofcollection + " >> \n")
-  await interaction.response.send_message(wanted_info)
+  wantinf = tabulate(wanted_info,
+                     headers=[f"Bigboy8424's Collection {nameofcollection}"])
   col_f = 'profile.members.6c7cd35c6fe14e82b142f1299a3bb759.collection.' + nameofcollection
   wanted_info_f = dd[[col_f]]
-  await interaction.response.send_message("Firefox696's Collection of " +
-                                          nameofcollection + " >> \n")
-  await interaction.response.send_message(wanted_info_f)
-  col_z = 'profile.members.677b393621554f62b28cd70c0c7dfa80.collection.' + nameofcollection
-  wanted_info_z = dd[[col_z]]
-  await interaction.response.send_message("Zixy42's Collection of " +
-                                          nameofcollection + " >> \n")
-  await interaction.response.send_message(wanted_info_z)
+  wantinff = tabulate(wanted_info_f,
+                      headers=[f"Firefox696's Collection {nameofcollection}"])
+  await interaction.followup.send(wantinf)
+  await interaction.followup.send(wantinff)
 
 
 @tree.command(
-  name='miningacol',
-  guild=discord.Object('1095716776987328574'),
-  description=
-  'Displays the total Co-Ops Colections from the Choice you Selected.')
+    name='miningacol',
+    description=
+    'Displays the total Co-Ops Colections from the Choice you Selected.')
 async def miningacol(interaction: discord.Interaction, noc: MiningItems):
+  await interaction.response.defer()
   if noc.name == "Cobblestone":
     nameofcollection = "COBBLESTONE"
   elif noc.name == "Coal":
@@ -982,7 +835,7 @@ async def miningacol(interaction: discord.Interaction, noc: MiningItems):
     nameofcollection = "MYCEL"
   elif noc.name == "End Stone":
     nameofcollection = "ENDER_STONE"
-  
+
   response = requests.get(urlh)
   data = json.loads(response.content)
   pretty_data = json.dumps(data, indent=2)
@@ -1000,27 +853,22 @@ async def miningacol(interaction: discord.Interaction, noc: MiningItems):
   dd = pd.read_csv('./csv/ccheck/output-ccheck.csv', nrows=2)
   col = 'profile.members.c3ca1ae1236c45d5922f2b1ec7eca271.collection.' + nameofcollection
   wanted_info = dd[[col]]
-  await interaction.response.send_message("Bigboy8424's Collection of " +
-                                          nameofcollection + " >> \n")
-  await interaction.response.send_message(wanted_info)
+  wantinf = tabulate(wanted_info,
+                     headers=[f"Bigboy8424's Collection {nameofcollection}"])
   col_f = 'profile.members.6c7cd35c6fe14e82b142f1299a3bb759.collection.' + nameofcollection
   wanted_info_f = dd[[col_f]]
-  await interaction.response.send_message("Firefox696's Collection of " +
-                                          nameofcollection + " >> \n")
-  await interaction.response.send_message(wanted_info_f)
-  col_z = 'profile.members.677b393621554f62b28cd70c0c7dfa80.collection.' + nameofcollection
-  wanted_info_z = dd[[col_z]]
-  await interaction.response.send_message("Zixy42's Collection of " +
-                                          nameofcollection + " >> \n")
-  await interaction.response.send_message(wanted_info_z)
+  wantinff = tabulate(wanted_info_f,
+                      headers=[f"Firefox696's Collection {nameofcollection}"])
+  await interaction.followup.send(wantinf)
+  await interaction.followup.send(wantinff)
 
 
 @tree.command(
-  name='combatacol',
-  guild=discord.Object('1095716776987328574'),
-  description=
-  'Displays the total Co-Ops Colections from the Choice you Selected.')
+    name='combatacol',
+    description=
+    'Displays the total Co-Ops Colections from the Choice you Selected.')
 async def comabtacol(interaction: discord.Interaction, noc: CombatItems):
+  await interaction.response.defer()
   if noc.name == "Rotten Flesh":
     nameofcollection = "ROTTEN_FLESH"
   elif noc.name == "Bones":
@@ -1043,7 +891,7 @@ async def comabtacol(interaction: discord.Interaction, noc: CombatItems):
     nameofcollection = "CHILI_PEPPER"
   elif noc.name == "Ender Pearls":
     nameofcollection = "ENDER_PEARL"
-  
+
   response = requests.get(urlh)
   data = json.loads(response.content)
   pretty_data = json.dumps(data, indent=2)
@@ -1061,27 +909,22 @@ async def comabtacol(interaction: discord.Interaction, noc: CombatItems):
   dd = pd.read_csv('./csv/ccheck/output-ccheck.csv', nrows=2)
   col = 'profile.members.c3ca1ae1236c45d5922f2b1ec7eca271.collection.' + nameofcollection
   wanted_info = dd[[col]]
-  await interaction.response.send_message("Bigboy8424's Collection of " +
-                                          nameofcollection.name + " >> \n")
-  await interaction.response.send_message(wanted_info)
+  wantinf = tabulate(wanted_info,
+                     headers=[f"Bigboy8424's Collection {nameofcollection}"])
   col_f = 'profile.members.6c7cd35c6fe14e82b142f1299a3bb759.collection.' + nameofcollection
   wanted_info_f = dd[[col_f]]
-  await interaction.response.send_message("Firefox696's Collection of " +
-                                          nameofcollection.name + " >> \n")
-  await interaction.response.send_message(wanted_info_f)
-  col_z = 'profile.members.677b393621554f62b28cd70c0c7dfa80.collection.' + nameofcollection
-  wanted_info_z = dd[[col_z]]
-  await interaction.response.send_message("Zixy42's Collection of " +
-                                          nameofcollection.name + " >> \n")
-  await interaction.response.send_message(wanted_info_z)
+  wantinff = tabulate(wanted_info_f,
+                      headers=[f"Firefox696's Collection {nameofcollection}"])
+  await interaction.followup.send(wantinf)
+  await interaction.followup.send(wantinff)
 
 
 @tree.command(
-  name='fishingacol',
-  guild=discord.Object('1095716776987328574'),
-  description=
-  'Displays the total Co-Ops Colections from the Choice you Selected.')
+    name='fishingacol',
+    description=
+    'Displays the total Co-Ops Colections from the Choice you Selected.')
 async def fishingacol(interaction: discord.Interaction, noc: FishingItems):
+  await interaction.response.defer()
   if noc.name == "Raw Fish":
     nameofcollection = "RAW_FISH"
   elif noc.name == "Raw Salmon":
@@ -1104,7 +947,7 @@ async def fishingacol(interaction: discord.Interaction, noc: FishingItems):
     nameofcollection = "INK_SACK"
   elif noc.name == "Magma Fish":
     nameofcollection = "MAGMA_FISH"
-  
+
   response = requests.get(urlh)
   data = json.loads(response.content)
   pretty_data = json.dumps(data, indent=2)
@@ -1122,27 +965,22 @@ async def fishingacol(interaction: discord.Interaction, noc: FishingItems):
   dd = pd.read_csv('./csv/ccheck/output-ccheck.csv', nrows=2)
   col = 'profile.members.c3ca1ae1236c45d5922f2b1ec7eca271.collection.' + nameofcollection
   wanted_info = dd[[col]]
-  await interaction.response.send_message("Bigboy8424's Collection of " +
-                                          nameofcollection + " >> \n")
-  await interaction.response.send_message(wanted_info)
+  wantinf = tabulate(wanted_info,
+                     headers=[f"Bigboy8424's Collection {nameofcollection}"])
   col_f = 'profile.members.6c7cd35c6fe14e82b142f1299a3bb759.collection.' + nameofcollection
   wanted_info_f = dd[[col_f]]
-  await interaction.response.send_message("Firefox696's Collection of " +
-                                          nameofcollection + " >> \n")
-  await interaction.response.send_message(wanted_info_f)
-  col_z = 'profile.members.677b393621554f62b28cd70c0c7dfa80.collection.' + nameofcollection
-  wanted_info_z = dd[[col_z]]
-  await interaction.response.send_message("Zixy42's Collection of " +
-                                          nameofcollection + " >> \n")
-  await interaction.response.send_message(wanted_info_z)
+  wantinff = tabulate(wanted_info_f,
+                      headers=[f"Firefox696's Collection {nameofcollection}"])
+  await interaction.followup.send(wantinf)
+  await interaction.followup.send(wantinff)
 
 
 @tree.command(
-  name='farmingacol',
-  guild=discord.Object('1095716776987328574'),
-  description=
-  'Displays the total Co-Ops Colections from the Choice you Selected.')
+    name='farmingacol',
+    description=
+    'Displays the total Co-Ops Colections from the Choice you Selected.')
 async def farmingacol(interaction: discord.Interaction, noc: FarmingItems):
+  await interaction.response.defer()
   if noc.name == "Wheat":
     nameofcollection = "WHEAT"
     pass
@@ -1204,12 +1042,10 @@ async def farmingacol(interaction: discord.Interaction, noc: FarmingItems):
   f.write(pretty_data)
   f.close()
   time.sleep(2.5)
-  await interaction.response.send_message("before with func")
   # Load the JSON data from a file
   with open('./json/ccheck/output-ccheck.json', 'r') as file:
     data = json.load(file)
     pass
-  await interaction.response.is_done()
   # Convert the JSON data to a DataFrame
   df = pd.json_normalize(data)
   # Write the DataFrame to a CSV file
@@ -1218,18 +1054,20 @@ async def farmingacol(interaction: discord.Interaction, noc: FarmingItems):
   col = 'profile.members.c3ca1ae1236c45d5922f2b1ec7eca271.collection.' + nameofcollection
   wanted_info = dd[[col]]
   wantinf = tabulate(wanted_info,
-     headers=['Bigboy8424s Collection'])
+                     headers=[f"Bigboy8424's Collection {nameofcollection}"])
   col_f = 'profile.members.6c7cd35c6fe14e82b142f1299a3bb759.collection.' + nameofcollection
   wanted_info_f = dd[[col_f]]
-  col_z = 'profile.members.677b393621554f62b28cd70c0c7dfa80.collection.' + nameofcollection
-  wanted_info_z = dd[[col_z]]
-  print(wantinf)
-  await interaction.response.send_message("Finished")
+  wantinff = tabulate(wanted_info_f,
+                      headers=[f"Firefox696's Collection {nameofcollection}"])
+  await interaction.followup.send(wantinf)
+  await interaction.followup.send(wantinff)
+
 
 # DATA & BOT MANAGEMENT #
 # Populates First Scan of Data Required for the above #
 @tree.command(name='populate', guild=discord.Object('1095716776987328574'))
 async def populate(interaction: discord.Interaction):
+  await interaction.response.defer()
   response = requests.get(url)
   data = json.loads(response.content)
   pretty_data = json.dumps(data, indent=2)
@@ -1245,7 +1083,7 @@ async def populate(interaction: discord.Interaction):
   # Write the DataFrame to a CSV file
   df.to_csv('./csv/ccheck/output-ccheck.csv', index=False)
   time.sleep(0.5)
-  
+
   response = requests.get(url)
   data = json.loads(response.content)
   pretty_data = json.dumps(data, indent=2)
@@ -1261,7 +1099,7 @@ async def populate(interaction: discord.Interaction):
   # Write the DataFrame to a CSV file
   df.to_csv('./csv/ccheck/output-ccheck.csv', index=False)
   time.sleep(0.5)
-  
+
   response = requests.get(url)
   data = json.loads(response.content)
   pretty_data = json.dumps(data, indent=2)
@@ -1367,15 +1205,14 @@ async def populate(interaction: discord.Interaction):
   df = pd.json_normalize(data)
   # Write the DataFrame to a CSV file
   df.to_csv('./csv/outbound/output-outboundah-zixy42.csv', index=False)
-  await interaction.response.send_message("POPULATION COMPLETED!!!!")
+  await interaction.followup.send("POPULATION COMPLETED!!!!")
 
 
 # Deletes all messages within a channel #
 @tree.command(
-  name='purge',
-  guild=discord.Object('1095716776987328574'),
-  description=
-  'This will wipe all messages from the channel you are currently in... USE WITH CUATION!!!!'
+    name='purge',
+    description=
+    'This will wipe all messages from the channel you are currently in... USE WITH CUATION!!!!'
 )
 async def purge(interaction: discord.Interaction, purgeamount: PurgeAmount):
   if purgeamount.name == "10":
@@ -1396,145 +1233,127 @@ async def purge(interaction: discord.Interaction, purgeamount: PurgeAmount):
 @discord_bot.command(name='fldrload',
                      guild=discord.Object('1095716776987328574'))
 async def fldrload(interaction: discord.Interaction):
+  await interaction.response.defer()
   if os.path.exists('logged-collection/zixy42') == True and os.path.exists(
       'logged-collection/firefox696') == True and os.path.exists(
-        'logged-collection/bigboy8424'
+          'logged-collection/bigboy8424'
       ) == True and os.path.exists('json/outbound') == True and os.path.exists(
-        'json/inbound') == True and os.path.exists(
-          'json/ccheck') == True and os.path.exists(
-            'csv/outbound') == True and os.path.exists(
+          'json/inbound'
+      ) == True and os.path.exists('json/ccheck') == True and os.path.exists(
+          'csv/outbound') == True and os.path.exists(
               'csv/inbound') == True and os.path.exists('csv/ccheck') == True:
-    await interaction.response.send_message("ALL FOLDERS ARE LOCATED!!!")
+    await interaction.followup.send("ALL FOLDERS ARE LOCATED!!!")
   if os.path.exists('csv/ccheck') == True:
-    await interaction.response.send_message(
-      "The Folder '/csv/ccheck' already exists")
+    await interaction.followup.send("The Folder '/csv/ccheck' already exists")
     pass
   elif os.path.exists('csv/ccheck') == False:
     os.mkdir('csv/ccheck')
-    await interaction.response.send_message(
-      "The Folder '/csv/ccheck' was created.")
+    await interaction.followup.send("The Folder '/csv/ccheck' was created.")
   if os.path.exists('csv/inbound') == True:
-    await interaction.response.send_message(
-      "The Folder '/csv/inbound' already exists")
+    await interaction.followup.send("The Folder '/csv/inbound' already exists")
     pass
   elif os.path.exists('csv/inbound') == False:
     os.mkdir('csv/inbound')
-    await interaction.response.send_message(
-      "The Folder '/csv/inbound' was created.")
+    await interaction.followup.send("The Folder '/csv/inbound' was created.")
   if os.path.exists('csv/outbound') == True:
-    await interaction.response.send_message(
-      "The Folder '/csv/outbound' already exists")
+    await interaction.followup.send("The Folder '/csv/outbound' already exists"
+                                    )
     pass
   elif os.path.exists('csv/outbound') == False:
     os.mkdir('csv/outbound')
-    await interaction.response.send_message(
-      "The Folder '/csv/outbound' was created.")
+    await interaction.followup.send("The Folder '/csv/outbound' was created.")
   if os.path.exists('json/ccheck') == True:
-    await interaction.response.send_message(
-      "The Folder '/json/ccheck' already exists")
+    await interaction.followup.send("The Folder '/json/ccheck' already exists")
     pass
   elif os.path.exists('json/ccheck') == False:
     os.mkdir('json/ccheck')
-    await interaction.response.send_message(
-      "The Folder '/json/ccheck' was created.")
+    await interaction.followup.send("The Folder '/json/ccheck' was created.")
   if os.path.exists('json/inbound') == True:
-    await interaction.response.send_message(
-      "The Folder '/json/inbound' already exists")
+    await interaction.followup.send("The Folder '/json/inbound' already exists"
+                                    )
     pass
   elif os.path.exists('json/inbound') == False:
     os.mkdir('json/inbound')
-    await interaction.response.send_message(
-      "The Folder '/json/inbound' was created.")
+    await interaction.followup.send("The Folder '/json/inbound' was created.")
   if os.path.exists('json/outbound') == True:
-    await interaction.response.send_message(
-      "The Folder '/json/outbound' already exists")
+    await interaction.followup.send(
+        "The Folder '/json/outbound' already exists")
     pass
   elif os.path.exists('json/outbound') == False:
     os.mkdir('json/outbound')
-    await interaction.response.send_message(
-      "The Folder '/json/outbound' was created.")
+    await interaction.followup.send("The Folder '/json/outbound' was created.")
   if os.path.exists('logged-collection/bigboy8424') == True:
-    await interaction.response.send_message(
-      "The Folder '/logged-collection/bigboy8424' already exists")
+    await interaction.followup.send(
+        "The Folder '/logged-collection/bigboy8424' already exists")
     pass
   elif os.path.exists('logged-collection/bigboy8424') == False:
     os.mkdir('logged-collection/bigboy8424')
-    await interaction.response.send_message(
-      "The Folder '/logged-collection/bigboy8424' was created.")
+    await interaction.followup.send(
+        "The Folder '/logged-collection/bigboy8424' was created.")
   if os.path.exists('logged-collection/firefox696') == True:
-    await interaction.response.send_message(
-      "The Folder '/logged-collection/firefox696' already exists")
+    await interaction.followup.send(
+        "The Folder '/logged-collection/firefox696' already exists")
     pass
   elif os.path.exists('logged-collection/firefox696') == False:
     os.mkdir('logged-collection/firefox696')
-    await interaction.response.send_message(
-      "The Folder '/logged-collection/firefox696' was created.")
+    await interaction.followup.send(
+        "The Folder '/logged-collection/firefox696' was created.")
   if os.path.exists('logged-collection/zixy42') == True:
-    await interaction.response.send_message(
-      "The Folder '/logged-collection/zixy42' already exists")
+    await interaction.followup.send(
+        "The Folder '/logged-collection/zixy42' already exists")
     pass
   elif os.path.exists('logged-collection/zixy42') == False:
     os.mkdir('logged-collection/zixy42')
-    await interaction.response.send_message(
-      "The Folder '/logged-collection/zixy42' was created.")
+    await interaction.followup.send(
+        "The Folder '/logged-collection/zixy42' was created.")
   if os.path.exists('logged-collection/storage') == True:
-    await interaction.response.send_message(
-      "The Folder '/logged-collection/storage' alread exists")
+    await interaction.followup.send(
+        "The Folder '/logged-collection/storage' alread exists")
     pass
   elif os.path.exists('logged-collection/storage') == False:
     os.mkdir('logged-collection/storage')
-    await interaction.response.send_message(
-      "The Folder '/logged-collection/storage' was created.")
-  await interaction.response.send_message("ALL FOLDERS ARE LOCATED!!!")
+    await interaction.followup.send(
+        "The Folder '/logged-collection/storage' was created.")
+  await interaction.followup.send("ALL FOLDERS ARE LOCATED!!!")
   time.sleep(3)
   await interaction.channel.purge(limit=11)
-  await interaction.response.send_message(
-    "All the Folders required have been Located!")
+  await interaction.followup.send("All the Folders required have been Located!"
+                                  )
 
 
 # Stops the bot #
 @discord_bot.command(name='stop', guild=discord.Object('1095716776987328574'))
 async def stop(interaction: discord.Interaction):
+  await interaction.response.defer()
   goodbye = "Goodbye..."
-  await interaction.response.send_message(goodbye)
+  await interaction.followup.send(goodbye)
   time.sleep(1)
   exit()
 
 
-# Updates the bot #
-@tree.command(
-  name='botupdate',
-  guild=discord.Object('1095716776987328574'),
-  description=
-  'Updates the bot to the latest version of code. Can only be ran by The Creator!'
-)
-async def botupdate(interaction: discord.Interaction):
-  os.system("pgrep -f  \"python keep_alive.py keep_alive\" | xargs kill 1")
-
-
 # Starts the bot after Update #
 @tree.command(
-  name='botstart',
-  guild=discord.Object('1095716776987328574'),
-  description=
-  'Starts the Bot Fully after an Update was ran. Can only be ran by The Creator!'
+    name='botstart',
+    description=
+    'Starts the Bot Fully after an Update was ran. Can only be ran by The Creator!'
 )
 async def botstart(interaction: discord.Interaction):
+  await interaction.response.defer()
   async with interaction.typing():
     # do expensive stuff here
     await asyncio.sleep(5)
-  await interaction.response.send_message("Bot Is Fully Started")
+  await interaction.followup.send("Bot Is Fully Started")
 
 
 # Starts the Weekly Tracker #
 @tree.command(name='wtstart',
-              guild=discord.Object('1095716776987328574'),
               description='WIP CANNOT BE RUN BY ANYONE BUT THE CREATOR!')
 async def wtstart(interaction: discord.Interaction):
+  await interaction.response.defer()
   os.system("python weekly.py")
   time.sleep(1)
-  await interaction.response.send_message(
-    "Weekly Tracker for SLIME_BALL Collection, Was Successfully Started!")
+  await interaction.followup.send(
+      "Weekly Tracker for SLIME_BALL Collection, Was Successfully Started!")
 
 
 keep_alive()

@@ -12,7 +12,7 @@ app = Flask('')
 
 
 @app.route('/')
-def home():
+def dscb():
   return "Hello. I am alive!"
   
 
